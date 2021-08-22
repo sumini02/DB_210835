@@ -1,0 +1,75 @@
+CREATE table STUDENT
+(
+    StudentID varchar(8) PRIMARY KEY,
+    StudentFName text(20) not null,
+    StudentLName text(20) not null,
+    Gender text(6) not null,
+    StudentEmail varchar(20) not null,
+    ContactNumber int(15) not null
+)
+
+CREATE table CHATROOM
+(
+    ChatroomID int(6) PRIMARY KEY,
+    ChatroomName varchar(20) not null,
+    ChatroomDescription varchar(50) not null,
+    SetupDate datetime(6) not null,
+    DateJoined datetime(6) not null,
+    ChatroomCode int(6) not null,
+    ChatroomType varchar(20) not null
+)
+
+CREATE table GROUP_MEETING
+(
+    GroupMeetingID int(6) PRIMARY KEY,
+    GroupMeetingName varchar(20) not null,
+    GroupMeetingChairPerson text(20) not null
+)
+
+CREATE table PROGRAM
+(
+    ProgramID int(6) PRIMARY KEY,
+    ProgramName varchar(20) not null,
+    Description varchar(50) not null,
+    ProgramEnrolled varchar(20) not null
+)
+
+CREATE table MEMBER
+(
+    MemberID varchar(20) PRIMARY KEY,
+    MemberFName text(20) not null,
+    MemberLName text(20) not null,
+    PhoneNo int(15) not null,
+    Email varchar(20) not null    
+)
+
+CREATE table ROLES
+(
+    RolesID int(20) PRIMARY KEY,
+    RolesName varchar(20) not null    
+)
+
+CREATE table ATTENDANCE
+(
+    StudentID int(8) PRIMARY KEY
+)
+
+CREATE table CHATROOM_DESCRIPTION
+(
+    ChatRoomID int(6) PRIMARY KEY,
+    Description varchar(50) not null
+)
+
+CREATE table GROUP_MEETING_SCHEDULE
+(
+    GroupMeetingID int(6) PRIMARY KEY,
+    GroupMeetingStartDate datetime(6) not null,
+    GroupMeetingEndDate datetime(6) not null,
+    GroupMeetingStartTime datetime(6) not null,
+    GroupMeetingEndTime datetime(6) not null
+)
+
+CREATE table GROUP_MEETING_CHAIR_PERSON
+(
+    ChairPersonID int(6) PRIMARY KEY
+)

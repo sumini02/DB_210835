@@ -1,0 +1,147 @@
+CREATE table STUDENT
+(
+    StudentID varchar(8) PRIMARY KEY,
+    StudentFName text(20) not null,
+    StudentLName text(20) not null,
+    Gender text(6) not null,
+    StudentEmail varchar(20) not null,
+    ContactNumber int(15) not null
+)
+
+CREATE table CHATROOM
+(
+    ChatroomID int(6) PRIMARY KEY,
+    ChatroomName varchar(20) not null,
+    ChatroomDescription varchar(50) not null,
+    SetupDate datetime(6) not null,
+    DateJoined datetime(6) not null,
+    ChatroomCode int(6) not null,
+    ChatroomType varchar(20) not null
+)
+
+ALTER TABLE chatroom
+ADD ProgramID int(6) not null;
+
+ALTER TABLE chatroom
+ADD FOREIGN KEY (ProgramID) REFERENCES program(ProgramID);
+
+ALTER TABLE chatroom
+ADD MemberID varchar(20) not null;
+
+ALTER TABLE chatroom
+ADD FOREIGN KEY (MemberID) REFERENCES member(MemberID);
+
+CREATE table GROUP_MEETING
+(
+    GroupMeetingID int(6) PRIMARY KEY,
+    GroupMeetingName varchar(20) not null,
+    ChairPersonID int(6) not null
+)
+
+ALTER TABLE group_meeting
+ADD FOREIGN KEY (ChairPersonID) REFERENCES group_meeting_chair_person(ChairPersonID);
+
+CREATE table PROGRAM
+(
+    ProgramID int(6) PRIMARY KEY,
+    ProgramName varchar(20) not null,
+    Description varchar(50) not null,
+    ProgramEnrolled varchar(20) not null
+)
+
+ALTER TABLE program
+ADD ChatroomID int(6) not null,
+ADD StudentID varchar(8) not null,
+ADD MemberID varchar(20) not null;
+
+ALTER TABLE program
+ADD FOREIGN KEY (ChatroomID) REFERENCES chatroom(ChatroomID),
+ADD FOREIGN KEY (StudentID) REFERENCES student(StudentID),
+ADD FOREIGN KEY (MemberID) REFERENCES member(MemberID);
+
+CREATE table MEMBER
+(
+    MemberID varchar(20) PRIMARY KEY,
+    MemberFName text(20) not null,
+    MemberLName text(20) not null,
+    PhoneNo int(15) not null,
+    Email varchar(20) not null    
+)
+
+ALTER TABLE member
+ADD RolesID int(20) not null;
+
+ALTER TABLE member
+ADD FOREIGN KEY (RolesID) REFERENCES roles(RolesID);
+
+CREATE table ROLES
+(
+    RolesID int(20) PRIMARY KEY,
+    RolesName varchar(20) not null    
+)
+
+CREATE table ATTENDANCE
+(
+    StudentID varchar(8) not null,
+    ChatroomID int(6) not null,
+    PRIMARY KEY (StudentID, ChatroomID),
+    FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+    FOREIGN KEY (ChatroomID) REFERENCES chatroom (ChatroomID)
+)
+
+-----------------------------------------studentID FK 실행 안됨...----------------------------------------------------
+
+CREATE table CHATROOM_DESCRIPTION
+(
+    ChatRoomID int(6) PRIMARY KEY,
+    Description varchar(50) not null
+)
+
+ALTER TABLE chatroom_description
+ADD FOREIGN KEY (ChatRoomID) REFERENCES chatroom (ChatRoomID);
+
+-----------------------------------------ChatRoomID FK 실행 안됨...----------------------------------------------------
+
+
+CREATE table GROUP_MEETING_SCHEDULE
+(
+    GroupMeetingID int(6) PRIMARY KEY,
+    GroupMeetingStartDate datetime(6) not null,
+    GroupMeetingEndDate datetime(6) not null,
+    GroupMeetingStartTime datetime(6) not null,
+    GroupMeetingEndTime datetime(6) not null
+)
+
+ALTER TABLE group_meeting_schedule
+ADD ChairPersonID int(6) not null;
+
+ALTER TABLE group_meeting_schedule
+add FOREIGN KEY (GroupMeetingID) REFERENCES group_meeting(GroupMeetingID);
+
+ALTER TABLE group_meeting_schedule
+add FOREIGN KEY (ChairPersonID) REFERENCES group_meeting_chair_person(ChairPersonID);
+
+-----------------------------------------GroupMeetingID FK 실행 안됨...----------------------------------------------------
+
+CREATE table GROUP_MEETING_CHAIR_PERSON
+(
+    ChairPersonID int(6) PRIMARY KEY
+)
+
+ALTER TABLE group_meeting_chair_person
+ADD GroupMeetingID int(6) not null;
+
+ALTER TABLE group_meeting_chair_person
+ADD FOREIGN KEY (GroupMeetingID) REFERENCES group_meeting(GroupMeetingID);
+
+
+CREATE TABLE MEMBER_GROUP_MEETING
+(
+    MemberID varchar(20) NOT null,
+    GroupMeetingID int(6) NOT null,
+    PRIMARY KEY (MemberID, GroupMeetingID),
+    Foreign Key (MemberID) REFERENCES MEMBER (MemberID),
+    Foreign Key (GroupMeetingID) REFERENCES GROUP_MEETING (GroupMeetingID)
+)
+
+-----------------------------------------MemberID FK 실행 안됨...----------------------------------------------------

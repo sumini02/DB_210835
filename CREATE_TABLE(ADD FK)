@@ -31,10 +31,10 @@ ADD MemberID varchar(20) not null;
 ALTER TABLE chatroom
 ADD FOREIGN KEY (MemberID) REFERENCES member(MemberID);
 
-ALTER TABLE chatroom
-add StudentID varchar(8) not null;
+ALTER TABLE chatroom 
+ADD StudentID varchar(8);
 
-ALTER TABLE chatroom
+alter TABLE chatroom 
 ADD FOREIGN KEY (StudentID) REFERENCES student(StudentID);
 
 CREATE table GROUP_MEETING

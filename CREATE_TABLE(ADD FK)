@@ -74,6 +74,9 @@ ADD RolesID int(20) not null;
 ALTER TABLE member
 ADD FOREIGN KEY (RolesID) REFERENCES roles(RolesID);
 
+ALTER TABLE member 
+ADD StudentID varchar(8);
+
 CREATE table ROLES
 (
     RolesID int(20) PRIMARY KEY,

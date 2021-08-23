@@ -1,0 +1,53 @@
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (0,'Sumin','Song','Female','sumin@psba.edu.sg',6501234567);
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (1,'Camellia','Cheah','Female','Camellia@psba.edu.sg',6501234567);
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (2,'Victoria','Tan','Female','Victoria@psba.edu.sg',3333333);
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (3,'Sultonova','Omina','Female','Sultonova@psba.edu.sg',4444444);
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (4,'Arthhur','Lee','Female','Arthhur@psba.edu.sg',5555555);
+INSERT INTO `student`(`StudentID`, `StudentFName`, `StudentLName`, `Gender`, `StudentEmail`, `ContactNumber`) VALUES (5,'Ziyard','Mohamed','male','Ziyard@psba.edu.sg',6666666);
+
+
+select student.StudentID, program.StudentID, attendance.StudentID
+from student
+inner join program
+on student.StudentID = program.StudentID
+inner join attendance
+on student.StudentID = attendance.StudentID;
+
+select program.ProgramID, chatroom.ProgramID
+from program
+inner join chatroom
+on program.ProgramID = chatroom.ProgramID;
+
+select member.MemberID, chatroom.MemberID, program.MemberID, member_group_meeting.MemberID
+from member
+inner join chatroom
+on member.MemberID = chatroom.MemberID
+inner join program
+on member.MemberID = program.MemberID
+inner join member_group_meeting
+on member.MemberID = member_group_meeting.MemberID;
+
+select chatroom.ChatroomID, program.ChatroomID, attendance.ChatroomID, chatroom_description.ChatRoomID
+from chatroom
+inner join program
+on chatroom.ChatroomID = program.ChatroomID
+inner join attendance
+on chatroom.ChatroomID = attendance.ChatroomID
+inner join chatroom_description
+on chatroom.ChatroomID = chatroom_description.ChatRoomID;
+
+select roles.RolesID, member.RolesID
+from roles
+inner join member
+on roles.RolesID = member.RolesID;
+
+select group_meeting.GroupMeetingID, group_meeting_schedule.GroupMeetingID, group_meeting_chair_person.GroupMeetingID, member_group_meeting.GroupMeetingID
+from group_meeting
+inner join group_meeting_schedule
+on group_meeting.GroupMeetingID = group_meeting_schedule.GroupMeetingID
+inner join group_meeting_chair_person
+on group_meeting.GroupMeetingID = group_meeting_chair_person.GroupMeetingID
+inner join member_group_meeting
+on group_meeting.GroupMeetingID = member_group_meeting.GroupMeetingID;
+
+INSERT INTO `chatroom`(`ChatroomID`, `ChatroomName`, `ChatroomDescription`, `SetupDate`, `DateJoined`, `ChatroomCode`, `ChatroomType`, `ProgramID`, `MemberID`) VALUES ('0','DDMG','database','20210705','20210705','0','A')

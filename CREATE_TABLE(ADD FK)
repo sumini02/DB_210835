@@ -32,7 +32,7 @@ ALTER TABLE chatroom
 ADD FOREIGN KEY (MemberID) REFERENCES member(MemberID);
 
 ALTER TABLE chatroom 
-ADD StudentID varchar(8);
+ADD StudentID varchar(8) not null;
 
 alter TABLE chatroom 
 ADD FOREIGN KEY (StudentID) REFERENCES student(StudentID);

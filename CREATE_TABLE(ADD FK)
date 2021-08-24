@@ -92,7 +92,7 @@ CREATE table ATTENDANCE
     StudentID varchar(8) not null,
     ChatroomID int(6) not null,
     PRIMARY KEY (StudentID, ChatroomID),
-    FOREIGN KEY (StudentID) REFERENCES student (StudentID)
+    FOREIGN KEY (StudentID) REFERENCES student (StudentID),
     FOREIGN KEY (ChatroomID) REFERENCES chatroom (ChatroomID)
 )
 
